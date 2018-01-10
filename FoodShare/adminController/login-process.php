@@ -24,7 +24,7 @@
 
         // 4. check that the password matches
         if ($password != $check ){
-            echo "The password is wrong.";
+            header('Location:../index.php');
             die;
         }
 

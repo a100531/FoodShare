@@ -2,6 +2,10 @@
   include("header.php");
   include("navbar.php");
 
+  if (!check_login()) {
+       header('Location:../index.php');
+    }
+    $user = $_COOKIE;
 ?>
 
   <div class="content-wrapper">
