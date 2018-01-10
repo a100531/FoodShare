@@ -29,10 +29,10 @@
             <label for="exampleInputPassword1">Password</label>
             <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
           </div>
-          <a class="btn btn-primary btn-block" href="posts.html">Login</a>
+          <a class="btn btn-primary btn-block" href="posts.php">Login</a>
         </form>
         <div class="text-center">
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+          <a class="d-block small" href="change-password.php">Forgot Password?</a>
         </div>
       </div>
     </div>

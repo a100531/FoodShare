@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="adminController/login.html">Log In</a>
+              <a class="nav-link" href="adminController/login.php">Log In</a>
             </li>
           </ul>
         </div>
