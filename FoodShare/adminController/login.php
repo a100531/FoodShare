@@ -1,3 +1,7 @@
+<?php
+  include("functions.php");
+  include("login-process.php");
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,18 +25,18 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+        <form action="login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Admin</label>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+            <input class="form-control" id="password" type="password" name="password" placeholder="Password">
           </div>
-          <a class="btn btn-primary btn-block" href="posts.php">Login</a>
+          <button type="submit" name="button">Login</button>
         </form>
         <div class="text-center">
-          <a class="d-block small" href="change-password.php">Forgot Password?</a>
+          <!--<a class="d-block small" href="change-password.php">Forgot Password?</a>-->
         </div>
       </div>
     </div>
