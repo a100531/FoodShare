@@ -21,26 +21,26 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="posts.html">Food Share Controller</a>
+    <a class="navbar-brand" href="index.html">Food Share Controller</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Posts">
-          <a class="nav-link" href="posts.html">
+          <a class="nav-link" href="posts.php">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Posts</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Accounts">
-          <a class="nav-link" href="accounts.html">
+          <a class="nav-link" href="accounts.php">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Accounts</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change-Password">
-          <a class="nav-link" href="change-password.html">
+          <a class="nav-link" href="change-password.php">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Change Password</span>
           </a>
@@ -157,7 +157,7 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Posts</li>
+        <li class="breadcrumb-item active">Accounts</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
@@ -168,10 +168,10 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Town</th>
                   <th>Start date</th>
                   <th>Actions</th>
                 </tr>
@@ -193,7 +193,7 @@
                   <td>Tokyo</td>
                   <td>33</td>
                   <td>2008/11/28</td>
-                  <td><a class='btn btn-danger'>Delete Post</a></td>
+                  <td><a class='btn btn-danger'>Delete Account</a></td>
                 </tr>
               </tbody>
             </table>

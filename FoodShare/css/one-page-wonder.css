@@ -40,6 +40,17 @@ h6 {
     margin-right: 10%;
 }
 
+.question {
+    color: #22b272;
+}
+
+.howDown {
+    color: #22b272;
+    font-size: 3rem;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .who {
     color: #fff;
     font-size: 3rem;
@@ -52,6 +63,8 @@ h6 {
 
 .divide {
     margin-top: 3%;
+    size: 10px;
+    color: #22b272;
 }
 
 #bannerROw {
@@ -61,6 +74,20 @@ h6 {
     background-position: center;
     padding-bottom: 28.22%;
     position: relative;
+}
+
+.whoWeAre {
+    color: #22b272;
+}
+
+.howStep {
+    color: #22b272;
+    margin-top: 5%;
+}
+
+.howTodo {
+    width: 15em;
+    margin-left: 10%;
 }
 
 header.masthead {

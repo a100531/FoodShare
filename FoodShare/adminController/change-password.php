@@ -28,19 +28,19 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Posts">
-          <a class="nav-link" href="posts.html">
+          <a class="nav-link" href="posts.php">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Posts</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Accounts">
-          <a class="nav-link" href="accounts.html">
+          <a class="nav-link" href="accounts.php">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Accounts</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change-Password">
-          <a class="nav-link" href="change-password.html">
+          <a class="nav-link" href="change-password.php">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Change Password</span>
           </a>
@@ -168,7 +168,7 @@
         <div class="form-group">
           <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email address">
         </div>
-        <a class="btn btn-primary btn-block" href="login.html">Reset Password</a>
+        <a class="btn btn-primary btn-block" href="login.php">Reset Password</a>
       </form>
     </div>
     <!-- /.container-fluid-->
@@ -197,7 +197,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="../index.html">Logout</a>
+            <a class="btn btn-primary" href="../index.php">Logout</a>
           </div>
         </div>
       </div>
