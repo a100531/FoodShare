@@ -52,6 +52,14 @@
                   <td>2008/11/28</td>
                   <td><a class='btn btn-danger'>Delete Post</a></td>
                 </tr>
+                <tr>
+                  <td>biri Satou</td>
+                  <td>Accountant</td>
+                  <td>Tokyo</td>
+                  <td>33</td>
+                  <td>2008/11/28</td>
+                  <td><a class='btn btn-danger'>Delete Post</a></td>
+                </tr>
               </tbody>
             </table>
           </div>

@@ -33,7 +33,7 @@
             <label for="exampleInputPassword1">Password</label>
             <input class="form-control" id="password" type="password" name="password" placeholder="Password">
           </div>
-          <button type="submit" name="button">Login</button>
+          <button class="btn btn-primary" type="submit" name="button">Login</button>
         </form>
         <div class="text-center">
           <!--<a class="d-block small" href="change-password.php">Forgot Password?</a>-->
