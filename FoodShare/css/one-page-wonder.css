@@ -90,6 +90,10 @@ h6 {
     margin-left: 10%;
 }
 
+.contactGreen {
+    color: #22b272;
+}
+
 header.masthead {
     position: relative;
     overflow: hidden;
