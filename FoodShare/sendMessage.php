@@ -2,8 +2,8 @@
 
 $email = $_POST['email'];
 $message =$_POST['message'];
-
-$myfile = fopen("adminController/contactMessages/$email.txt", "w") or die("Unable to open file!");
+$time = time()+60*60*24*30;
+$myfile = fopen("adminController/contactMessages/$email,$time.txt", "w") or die("Unable to open file!");
 $txt = $email;
 fwrite($myfile, $txt);
 $txt = "\r\n";
