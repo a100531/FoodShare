@@ -23,7 +23,7 @@
         }
 
         // 4. check that the password matches
-        if ($password != $check ){
+        if (!password_verify($password, $check)){
             header('Location:../index.php');
             die;
         }
