@@ -19,6 +19,7 @@
         // === checks that a variable is IDENTICAL
         if ($check === FALSE) {
             echo "This user doesn't exist.";
+            header('Location:../index.php');
             die;
         }
 
