@@ -17,6 +17,12 @@
           <span class="nav-link-text">Accounts</span>
         </a>
       </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Accounts">
+        <a class="nav-link" href="messages.php">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Messages</span>
+        </a>
+      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change-Password">
         <a class="nav-link" href="change-password.php">
           <i class="fa fa-fw fa-area-chart"></i>
