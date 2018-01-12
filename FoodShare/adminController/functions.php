@@ -171,4 +171,49 @@
       return $result;
 
   }
+  function update_password($email, $password) {
+
+      // 1. connect to the database
+      $conn = connect_to_db();
+
+      // 2. protect the variables from SQL injection
+
+      // BLOWFISH encryption
+      // http://www.splashdata.com/splashid/blowfish.htm
+      $password = password_hash($password, CRYPT_BLOWFISH);
+      $password = mysqli_escape_string($conn, $password);
+
+
+      // 3. define a query
+      $query ="
+      UPDATE tbl_accounts
+         SET
+            password = '{$password}'
+         ";
+
+      // 4. ask SQL to perform the query
+      $result = mysqli_query($conn, $query);
+      
+
+      // 5. check that we've inserted one row
+      if (mysqli_affected_rows($conn) != 1) {
+
+          // unsuccessful: replace the result variable with an error
+          $result = "The query was not successful: ";
+          // .= concatenates a string with the current value
+          $result .= mysqli_error($conn);
+
+      } else {
+
+          // if successful, we need the primary key ID
+          $result = mysqli_insert_id($conn);
+      }
+
+      // 6. disconnect from the database
+      disconnect_from_db($conn);
+
+      // 7. give back whatever we've ended up with
+      return $result;
+
+  }
  ?>
