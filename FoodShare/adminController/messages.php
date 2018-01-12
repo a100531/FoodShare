@@ -58,11 +58,16 @@
                 <?php
                   for($index=0; $index < $indexCount; $index++) {
                       if (substr("$dirArray[$index]", 0, 1) != "."){
+                        $timestamp = intval(explode('.', $dirArray[$index])[0]);
+
+                        $handle = fopen("contactMessages/".$dirArray[$index], 'r');
+                        $email = fgets($handle);
+                        fclose($handle);
                 ?>
                 <tr>
-                  <td><?php echo "<a href=contactMessages/{$dirArray[$index]}>$dirArray[$index]></a>" ?></td>
+                  <td><a href="contactMessages/<?=$dirArray[$index]?>"><?=$email?> (<?=date('d M Y, H:i', $timestamp)?>)</a></td>
                   <td><a class='btn btn-info'  ><?php echo $index?></a></td>
-                  <td><a class='btn btn-danger'>Delete</a></td>
+                  <td><a href="deleteMessage.php?id=<?=$dirArray[$index]?>" class='btn btn-danger'>Delete</a></td>
                 </tr>
                 <?php
                     }
