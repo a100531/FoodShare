@@ -36,7 +36,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Messages</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -65,8 +65,8 @@
                         fclose($handle);
                 ?>
                 <tr>
-                  <td><a href="contactMessages/<?=$dirArray[$index]?>"><?=$email?> (<?=date('d M Y, H:i', $timestamp)?>)</a></td>
-                  <td><a class='btn btn-info'  ><?php echo $index?></a></td>
+                  <td><label><?=$email?> (<?=date('d M Y, H:i', $timestamp)?>)</label></td>
+                  <td><a href="viewMessages.php?id=<?=$dirArray[$index]?>" class='btn btn-info'>View</a></td>
                   <td><a href="deleteMessage.php?id=<?=$dirArray[$index]?>" class='btn btn-danger'>Delete</a></td>
                 </tr>
                 <?php
