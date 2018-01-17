@@ -1,3 +1,21 @@
+<?php
+  include("functions.php");
+  include("updateAccount-process.php");
+
+
+      if (!isset ($_GET["id"])){
+          header("Location:accounts.php");
+      }
+
+      $accounts = get_accounts($_GET['id']);
+      $assoc = mysqli_fetch_assoc($accounts);
+      //$description = file_get_contents("fish_descriptions/{$_GET['id']}.txt");
+
+      if ($assoc == NULL) {
+          die('This  does not exist!');
+      }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,40 +39,32 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Register an Account</div>
       <div class="card-body">
-        <form action="register-process.php" method="post">
+        <form action="updateAccount.php?id=<?=$_GET['id']?>" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Username</label>
-            <input class="form-control" name="username" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Enter email">
+            <input class="form-control" name="username" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["username"]?>">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" name="email" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input class="form-control" name="email" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" value="<?=$assoc["email"]?>">
           </div>
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">
-                <label for="exampleInputPassword1">Password</label>
-                <input class="form-control" name="password" id="exampleInputPassword1" type="password" placeholder="Password">
-              </div>
-              <div class="col-md-6">
-                <label for="exampleConfirmPassword">Confirm password</label>
-                <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password">
-              </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Phone</label>
-                <input class="form-control" name="phone" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="99999999">
+                <input class="form-control" name="phone" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["phone"]?>">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Location</label>
-                <input class="form-control" name="location" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Qajjenza">
+                <input class="form-control" name="location" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["location"]?>">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input class="form-control" name="name" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Name">
+                <input class="form-control" name="name" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["name"]?>">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Surname</label>
-                <input class="form-control" name="surname" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Surname">
+                <input class="form-control" name="surname" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["surname"]?>">
               </div>
             </div>
           </div>

@@ -6,6 +6,8 @@
        header('Location:../index.php');
     }
     $user = $_COOKIE;
+
+  $accounts = show_accounts();
 ?>
 
   <div class="content-wrapper">
@@ -26,33 +28,44 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Username</th>
+                  <th>Id</th>
                   <th>Email</th>
+                  <th>Username</th>
                   <th>Phone</th>
-                  <th>Town</th>
-                  <th>Start date</th>
-                  <th>Actions</th>
+                  <th>Location</th>
+                  <th>Name</th>
+                  <th>Surname</th>
+                  <th>Action</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
+                  <th>Id</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Phone</th>
+                  <th>Location</th>
                   <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Actions</th>
+                  <th>Surname</th>
+                  <th>Action</th>
+                  <th>Action</th>
                 </tr>
               </tfoot>
               <tbody>
+                <?php while($assoc = mysqli_fetch_assoc($accounts)):?>
                 <tr>
-                  <td>Airi Satou</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>33</td>
-                  <td>2008/11/28</td>
-                  <td><a class='btn btn-danger'>Delete Account</a></td>
+                  <td><?=$assoc['id']?></td>
+                  <td><?=$assoc['email']?></td>
+                  <td><?=$assoc['username']?></td>
+                  <td><?=$assoc['phone']?></td>
+                  <td><?=$assoc['location']?></td>
+                  <td><?=$assoc['name']?></td>
+                  <td><?=$assoc['surname']?></td>
+                  <td><a href="updateAccount.php?id=<?=$assoc["id"]?>" class='btn btn-info'>Edit Account</a></td>
+                  <td><a href="deleteAccount.php?id=<?=$assoc["id"]?>" class='btn btn-danger'>Delete Account</a></td>
                 </tr>
+              <?php endwhile; ?>
               </tbody>
             </table>
           </div>
