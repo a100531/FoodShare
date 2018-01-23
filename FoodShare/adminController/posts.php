@@ -6,6 +6,8 @@
        header('Location:../index.php');
     }
     $user = $_COOKIE;
+
+    $posts = show_posts();
 ?>
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -25,41 +27,57 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
+                  <th>Id</th>
+                  <th>User</th>
+                  <th>Product</th>
+                  <th>Location</th>
+                  <th>Phone</th>
+                  <th>Expiry</th>
+                  <th>Image</th>
+                  <th>Notes</th>
+                  <th>Actions</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
+                  <th>Id</th>
+                  <th>User</th>
+                  <th>Product</th>
+                  <th>Location</th>
+                  <th>Phone</th>
+                  <th>Expiry</th>
+                  <th>Image</th>
+                  <th>Notes</th>
+                  <th>Actions</th>
                   <th>Actions</th>
                 </tr>
               </tfoot>
               <tbody>
+                <?php while($assoc = mysqli_fetch_assoc($posts)):
+                    $images = glob("productImages/{$assoc['posts_id']}.*");
+                    if (count($images) == 0) {
+                      $images = "defaultpic.jpg";
+                    } else {
+                      $images = $images[0];
+                    }
+
+                    $textfile = "postNotes/{$assoc['posts_id']}.txt";
+                    $text = (file_exists($textfile)) ? file_get_contents($textfile) : 'No text found. You suck. WHERESYOURTEXT';
+                  ?>
                 <tr>
-                  <td>Airi Satou</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>33</td>
-                  <td>2008/11/28</td>
-                  <td><a class='btn btn-danger'>Delete Post</a></td>
+                  <td><?=$assoc['posts_id']?></td>
+                  <td><?=$assoc['posts_user']?></td>
+                  <td><?=$assoc['posts_product']?></td>
+                  <td><?=$assoc['posts_location']?></td>
+                  <td><?=$assoc['posts_phone']?></td>
+                  <td><?=$assoc['posts_expiry']?></td>
+                  <td><img width="50%" src="<?=$images?>"></td>
+                  <td><?=$text?></td>
+                  <td><a href="report.php?user=<?=$assoc['posts_user']?>" class='btn btn-danger'>Report</a></td>
+                  <td><a href="deleteAccount.php?id=<?=$assoc['posts_id']?>" class='btn btn-danger'>Delete Post</a></td>
                 </tr>
-                <tr>
-                  <td>biri Satou</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>33</td>
-                  <td>2008/11/28</td>
-                  <td><a class='btn btn-danger'>Delete Post</a></td>
-                </tr>
+              <?php endwhile; ?>
               </tbody>
             </table>
           </div>

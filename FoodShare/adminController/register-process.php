@@ -1,6 +1,13 @@
 <?php
       include("functions.php");
       // NOTE: First, we check that the inputs are valid
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        foreach ($_POST as $key => $value) {
+          $_FORM[$key] = htmlspecialchars($value);
+        }
+      }
+
       $username = $_POST['username'];
       $email = $_POST['email'];
       $password = $_POST['password'];

@@ -171,6 +171,95 @@
       return $result;
 
   }
+  function insert_post($product,$location,$phone,$expiry) {
+
+      // 1. connect to the database
+      $conn = connect_to_db();
+
+      // 2. protect the variables from SQL injection
+      $product = mysqli_escape_string($conn, $product);
+      $location = mysqli_escape_string($conn, $location);
+      $phone = mysqli_escape_string($conn, $phone);
+      $expiry = mysqli_escape_string($conn, $expiry);
+
+
+
+      // 3. define a query
+      $query = "
+          INSERT INTO tbl_posts
+              (posts_product, posts_location, posts_phone ,posts_expiry,posts_user)
+          VALUES
+              ('{$product}', '{$location}', '{$phone}', '{$expiry}','darren')
+      ";
+
+      // 4. ask SQL to perform the query
+      $result = mysqli_query($conn, $query);
+
+      // 5. check that we've inserted one row
+      if (mysqli_affected_rows($conn) != 1) {
+
+          // unsuccessful: replace the result variable with an error
+          $result = "The query was not successful: ";
+          // .= concatenates a string with the current value
+          $result .= mysqli_error($conn);
+
+      } else {
+
+          // if successful, we need the primary key ID
+          $result = mysqli_insert_id($conn);
+      }
+
+      // 6. disconnect from the database
+      disconnect_from_db($conn);
+
+      // 7. give back whatever we've ended up with
+      return $result;
+
+  }
+  function report($user) {
+
+      // 1. connect to the database
+      $conn = connect_to_db();
+
+      // 2. protect the variables from SQL injection
+      $user = mysqli_escape_string($conn, $user);
+
+
+
+      // 3. define a query
+      $query = "
+      UPDATE tbl_accounts
+            SET
+                reports = reports + 1
+            WHERE
+                username = '{$user}'
+
+      ";
+
+      // 4. ask SQL to perform the query
+      $result = mysqli_query($conn, $query);
+
+      // 5. check that we've inserted one row
+      if (mysqli_affected_rows($conn) != 1) {
+
+          // unsuccessful: replace the result variable with an error
+          $result = "The query was not successful: ";
+          // .= concatenates a string with the current value
+          $result .= mysqli_error($conn);
+
+      } else {
+
+          // if successful, we need the primary key ID
+          $result = mysqli_insert_id($conn);
+      }
+
+      // 6. disconnect from the database
+      disconnect_from_db($conn);
+
+      // 7. give back whatever we've ended up with
+      return $result;
+
+  }
   function update_password($email, $password) {
 
       // 1. connect to the database
@@ -224,6 +313,30 @@
 
       $query = "
         SELECT * FROM `tbl_accounts`
+      ";
+
+      if ($id != NULL) {
+        $id = mysqli_escape_string($conn, $id);
+        $query .= "AND ID = {$id}";
+      }
+
+      // asking SQL to perform the query
+      $result = mysqli_query($conn,$query);
+
+      //disconnect from the database
+      disconnect_from_db($conn);
+
+      // give back the end result
+      return $result;
+  }
+  function show_posts($id = NULL){
+      // connect to the database;
+      $conn = connect_to_db();
+
+      // defining a query
+
+      $query = "
+        SELECT * FROM `tbl_posts`
       ";
 
       if ($id != NULL) {
@@ -335,43 +448,42 @@
 
    if (check_account($id,$email,$username,$phone,$location,$name,$surname)) {
        return TRUE;
-   }
-
+     }
   // connection to the database
-  $conn = connect_to_db();
+    $conn = connect_to_db();
 
-  $id = mysqli_escape_string($conn,$id);
-  $username = mysqli_escape_string($conn,$username);
-  $email = mysqli_escape_string($conn,$email);
-  $phone = mysqli_escape_string($conn,$phone);
-  $location = mysqli_escape_string($conn,$location);
-  $name = mysqli_escape_string($conn,$name);
-  $surname = mysqli_escape_string($conn,$surname);
+    $id = mysqli_escape_string($conn,$id);
+    $username = mysqli_escape_string($conn,$username);
+    $email = mysqli_escape_string($conn,$email);
+    $phone = mysqli_escape_string($conn,$phone);
+    $location = mysqli_escape_string($conn,$location);
+    $name = mysqli_escape_string($conn,$name);
+    $surname = mysqli_escape_string($conn,$surname);
 
-  $query ="
-  UPDATE tbl_accounts
-        SET
-            email = '{$email}',
-            username = '{$username}',
-            phone = '{$phone}',
-            location = '{$location}',
-            name = '{$name}',
-            surname = '{$surname}'
-        WHERE
-            id = '{$id}'
-        ";
-    $result  = mysqli_query($conn,$query);
-    if (mysqli_affected_rows($conn) !=1){
-        //.combines two strings
-        echo "the query is not successful:";
-        echo mysqli_error($conn);
-    }else{
-        //this will change $result to TRUE
-        $result = TRUE;
+    $query ="
+    UPDATE tbl_accounts
+          SET
+              email = '{$email}',
+              username = '{$username}',
+              phone = '{$phone}',
+              location = '{$location}',
+              name = '{$name}',
+              surname = '{$surname}'
+          WHERE
+              id = '{$id}'
+          ";
+      $result  = mysqli_query($conn,$query);
+      if (mysqli_affected_rows($conn) !=1){
+          //.combines two strings
+          echo "the query is not successful:";
+          echo mysqli_error($conn);
+      }else{
+          //this will change $result to TRUE
+          $result = TRUE;
+      }
+      disconnect_from_db($conn);
+
+      return $result;
     }
-    disconnect_from_db($conn);
-
-    return $result;
-  }
 
  ?>
