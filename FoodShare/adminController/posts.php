@@ -1,6 +1,7 @@
 <?php
   include("header.php");
   include("navbar.php");
+  include("functions.php");
 
   if (!check_login()) {
        header('Location:../index.php');
@@ -37,6 +38,7 @@
                   <th>Notes</th>
                   <th>Actions</th>
                   <th>Actions</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tfoot>
@@ -51,6 +53,7 @@
                   <th>Notes</th>
                   <th>Actions</th>
                   <th>Actions</th>
+                  <th>Actions</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -63,7 +66,7 @@
                     }
 
                     $textfile = "postNotes/{$assoc['posts_id']}.txt";
-                    $text = (file_exists($textfile)) ? file_get_contents($textfile) : 'No text found. You suck. WHERESYOURTEXT';
+                    $text = (file_exists($textfile)) ? file_get_contents($textfile) : 'No text found.';
                   ?>
                 <tr>
                   <td><?=$assoc['posts_id']?></td>
@@ -75,6 +78,7 @@
                   <td><img width="50%" src="<?=$images?>"></td>
                   <td><?=$text?></td>
                   <td><a href="report.php?user=<?=$assoc['posts_user']?>" class='btn btn-danger'>Report</a></td>
+                  <td><a href="editPost.php?id=<?=$assoc['posts_id']?>" class='btn btn-info'>Edit</a></td>
                   <td><a href="deleteAccount.php?id=<?=$assoc['posts_id']?>" class='btn btn-danger'>Delete Post</a></td>
                 </tr>
               <?php endwhile; ?>

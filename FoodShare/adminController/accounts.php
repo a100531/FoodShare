@@ -1,6 +1,7 @@
 <?php
   include("header.php");
   include("navbar.php");
+  include("functions.php");
 
   if (!check_login()) {
        header('Location:../index.php');

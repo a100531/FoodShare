@@ -341,8 +341,10 @@
 
       if ($id != NULL) {
         $id = mysqli_escape_string($conn, $id);
-        $query .= "AND ID = {$id}";
+        $query .= "WHERE posts_id = {$id}";
       }
+
+      //echo $query; die;
 
       // asking SQL to perform the query
       $result = mysqli_query($conn,$query);
@@ -353,6 +355,77 @@
       // give back the end result
       return $result;
   }
+  function check_post($id,$product,$location,$phone,$expiry){
+
+    // connection to the database
+    $conn = connect_to_db();
+
+    $id = mysqli_escape_string($conn,$id);
+    $product = mysqli_escape_string($conn,$product);
+    $location = mysqli_escape_string($conn,$location);
+    $phone = mysqli_escape_string($conn,$phone);
+    $expiry = mysqli_escape_string($conn,$expiry);
+
+
+    $query ="
+        SELECT *
+        FROM tbl_posts
+          WHERE
+              posts_product = '{$product}' AND
+              posts_location = '{$location}' AND
+              posts_phone = '{$phone}' AND
+              posts_expiry = '{$expiry}' AND
+              posts_id = '{$id}'
+          ";
+
+    // get the results to check that the query matches
+      $result  = mysqli_query($conn,$query);
+
+      // disconnect because the query is done
+      disconnect_from_db($conn);
+
+      // check the number of rows, and return TRUE or FALSE if the result is one.
+      return mysqli_num_rows($result) == 1;
+    }
+  function edit_post($id,$product,$location,$phone,$expiry){
+
+     if (check_post($id,$product,$location,$phone,$expiry)) {
+         return TRUE;
+     }
+
+    // connection to the database
+    $conn = connect_to_db();
+
+
+        $id = mysqli_escape_string($conn,$id);
+        $product = mysqli_escape_string($conn,$product);
+        $location = mysqli_escape_string($conn,$location);
+        $phone = mysqli_escape_string($conn,$phone);
+        $expiry = mysqli_escape_string($conn,$expiry);
+
+    $query ="
+    UPDATE tbl_posts
+          SET
+              posts_product = '{$product}',
+              posts_location = '{$location}',
+              posts_phone = '{$phone}',
+              posts_expiry = '{$expiry}'
+          WHERE
+              posts_id = '{$id}'
+          ";
+      $result  = mysqli_query($conn,$query);
+      if (mysqli_affected_rows($conn) !=1){
+          //.combines two strings
+          echo "the query is not successful:";
+          echo mysqli_error($conn);
+      }else{
+          //this will change $result to TRUE
+          $result = TRUE;
+      }
+      disconnect_from_db($conn);
+
+      return $result;
+    }
   function delete_account($id){
 
         $conn = connect_to_db();

@@ -1,5 +1,5 @@
 <?php
-include "functions.php";
+include("functions.php");
 
   //check if we re editing a book
   if (!isset ($_GET["id"])){
