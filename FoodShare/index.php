@@ -55,11 +55,11 @@
               <img class="logo" src="img/logo.png">
             </div>
             <div class="col-lg-2">
-              <a class="fa fa-facebook-square" href="#"></a>
+              <!--<a class="fa fa-facebook-square" href="#"></a>
                 </br>
               <a class="fa fa-facebook-square" href="#"></a>
                 </br>
-              <a class="fa fa-facebook-square" href="#"></a>
+              <a class="fa fa-facebook-square" href="#"></a>-->
             </div>
           </div>
       </div>
@@ -161,7 +161,7 @@
             <p class="howStep">FoodShare is a free app which connects neighbours with each other
               and with local groceries or supermarkets so surplus food can be shared and not thrown away.</p>
             <h2 class="question">Where is Foodshare available?</h2>
-            <p class="howStep">FoodShare is available to be used in Malta and Gozo.</p>
+            <p class="howStep">FoodShare is available to be used in Malta.</p>
             <h2 class="question">What devices does FoodShare work on?</h2>
             <p class="howStep">The application will work on both Android and Apple devices.</p>
             <h2 class="question">Can I sell items for money?</h2>
@@ -169,23 +169,19 @@
             <h2 class="question">Why can’t I sell items for money?</h2>
             <p class="howStep">We would like to build a local sharing community working on food waste reduction.
                On another note, there are plenty of alternative apps and websites for selling.</p>
-            <h2 class="question">What should I do if several people request the same item?</h2>
-            <p class="howStep">It’s totally up to you. For example, you could take a ‘first come, first served’
-              approach. Otherwise you might want to give your item to someone who’s never collected from you
-              before, or even to the person who makes the friendliest request!</p>
-            <h2 class="question">Who sees what items on the app?</h2>
+            <h2 class="question">Who can see which items on the app?</h2>
             <p class="howStep">All users can customise their notifications to determine what items they are
-              notified about. And when you open the app you can filter items by distance from you, and by
+              notified about. And when you open the app you can filter items by location or category of food, and by
               how recently they were added.</p>
             <h2 class="question">What should I do if I see an inappropriate listing on the app?</h2>
-            <p class="howStep">It is easy to report an inappropriate listing on FoodShare. Please inform
-              the Administrator of the app. (Any directions how to do it here?)</p>
+            <p class="howStep">It is easy to report an inappropriate listing on FoodShare. You will be able to report
+            each listing individually from the post itself.</p>
             <h2 class="question">What do I do if another user is inappropriate or doesn’t show
               up to collect an item when they said they would?</h2>
             <p class="howStep">It is very important that FoodShare users treat each other with respect
               and courtesy. If another user is inappropriate or does not show up to collect an item
               please click on a user’s profile, scroll to the bottom and tap “Report this profile/user”.
-              (to keep in mind for the design)</p>
+            </p>
             <h2 class="question">What is the best way in uploading an image?</h2>
             <p class="howStep">Do not use stock images. Only take an image of the item being offered.</p>
           </div>

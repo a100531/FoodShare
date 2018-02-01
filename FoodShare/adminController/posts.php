@@ -75,11 +75,11 @@
                   <td><?=$assoc['posts_location']?></td>
                   <td><?=$assoc['posts_phone']?></td>
                   <td><?=$assoc['posts_expiry']?></td>
-                  <td><img width="50%" src="<?=$images?>"></td>
-                  <td><?=$text?></td>
+                  <td><img width="80%" src="<?=$images?>"></td>
+                  <td><p width="50%"><?=$text?></p></td>
                   <td><a href="report.php?user=<?=$assoc['posts_user']?>" class='btn btn-danger'>Report</a></td>
                   <td><a href="editPost.php?id=<?=$assoc['posts_id']?>" class='btn btn-info'>Edit</a></td>
-                  <td><a href="deleteAccount.php?id=<?=$assoc['posts_id']?>" class='btn btn-danger'>Delete Post</a></td>
+                  <td><a href="deletePost.php?id=<?=$assoc['posts_id']?>" class='btn btn-danger'>Delete Post</a></td>
                 </tr>
               <?php endwhile; ?>
               </tbody>

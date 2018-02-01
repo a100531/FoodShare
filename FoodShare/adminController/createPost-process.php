@@ -10,7 +10,7 @@
       $product = $_POST['product'];
       $location = $_POST['location'];
       $phone = $_POST['phone'];
-      $expiry = $_POST['expiry'];
+      $expiry = time() + $_POST['expiry'];
       $notes = $_POST['postNotes'];
 
       $id = insert_post($product,$location,$phone,$expiry);

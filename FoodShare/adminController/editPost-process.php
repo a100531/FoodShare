@@ -26,17 +26,17 @@
             die;
           }
 
-          if (isset($_FILES['file'])) {
+          if (isset($_FILES['postImages'])) {
 
               $file = "productImages/{$postid}.*";
               array_map("unlink", glob($file));
 
               # fix the folder's permissions to allow upload
-              chmod('uploaded_imgs', 0777);
-              $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+              chmod('productImages', 0777);
+              $ext = pathinfo($_FILES['postImages']['name'], PATHINFO_EXTENSION);
               $filename = "productImages/{$postid}.{$ext}";
 
-              if (!move_uploaded_file($_FILES['file']['tmp_name'], $filename)) {
+              if (!move_uploaded_file($_FILES['postImages']['tmp_name'], $filename)) {
                   header('Location:posts.php');
               }
         }

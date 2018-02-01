@@ -1,6 +1,7 @@
 <?php
-      include("functions.php");
-      // NOTE: First, we check that the inputs are valid
+      header('Access-Control-Allow-Origin: *');
+      include 'functions.php';
+      // First, we check that the inputs are valid
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         foreach ($_POST as $key => $value) {
@@ -19,6 +20,6 @@
       insert_user($email, $password,$username,$phone,$location,$name,$surname);
 
 
-      header('Location:login.php');
+      //header('Location:login.php');
 
  ?>

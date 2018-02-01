@@ -1,6 +1,12 @@
 <?php
   session_start();
+  function encode_image($image) {
+    $ext = pathinfo($image, PATHINFO_EXTENSION);
+    $data = file_get_contents($image);
+    $base64 = 'data:image/' . $ext . ';base64,' . base64_encode($data);
 
+    return $base64;
+}
   function connect_to_db() {
 
       // $conn only exists within this function
@@ -334,7 +340,9 @@
       $conn = connect_to_db();
 
       // defining a query
-
+      // ask red as the expiry filter seems to glitch !!!!!!!!!!!!!!
+      //$now = time();
+      //WHERE posts_expiry > $now
       $query = "
         SELECT * FROM `tbl_posts`
       ";
@@ -354,6 +362,29 @@
 
       // give back the end result
       return $result;
+  }
+  function show_mobPosts($id = NULL){
+      // connect to the database;
+      $conn = connect_to_db();
+
+      // defining a query
+      // ask red as the expiry filter seems to glitch !!!!!!!!!!!!!!
+      //$now = time();
+      //WHERE posts_expiry > $now
+      $query = "
+        SELECT * FROM `tbl_posts`
+      ";
+
+      //echo $query; die;
+
+      // asking SQL to perform the query
+      $result = mysqli_query($conn,$query);
+
+      //disconnect from the database
+      disconnect_from_db($conn);
+
+      // give back the end result
+      return mysqli_fetch_all($result, MYSQLI_ASSOC);
   }
   function check_post($id,$product,$location,$phone,$expiry){
 
@@ -438,6 +469,37 @@
 
             WHERE
                 id = '{$id}'
+            ";
+        $result = mysqli_query($conn, $query);
+
+        //check that the query worked
+        if (mysqli_affected_rows($conn) !=1){
+            //.combines ywo strings
+            echo "the query is not successful:";
+            echo mysqli_error($conn);
+        }else{
+            //this will change $result to TRUE
+            $result = TRUE;
+
+        }
+
+
+        disconnect_from_db($conn);
+
+        return $result;
+    }
+  function delete_post($id){
+
+        $conn = connect_to_db();
+
+        //protect our variables
+        $id = mysqli_escape_string($conn, $id);
+
+        $query ="
+            DELETE FROM tbl_posts
+
+            WHERE
+                posts_id = '{$id}'
             ";
         $result = mysqli_query($conn, $query);
 

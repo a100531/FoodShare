@@ -19,7 +19,6 @@
           die('This post does not exist!');
       }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,18 +59,14 @@
                 <input class="form-control" name="phone" id="exampleInputPassword1" value="<?=$assoc["posts_phone"]?>" type="text" placeholder="99999999">
               </div>
               <div class="col-md-6">
-                //edit create array ask red on tuesday
-                <input type="radio" id="expiry12Hours"
-                 name="expiry" value="12">
+                <input type="radio" id="expiry12Hours" name="expiry" value="12"<?php if ($assoc['posts_expiry'] == 12) echo " checked"; ?>>
                 <label for="expiry12Hours">12 Hours</label>
-
-                <input type="radio" id="expiry72Hours"
-                 name="expiry" value="72">
-                <label for="expiry72Hours">3 Days</label>
-
-                <input type="radio" id="expiry168Hours"
-                 name="expiry" value="168">
-                <label for="expiry168Hours">7 Days</label>
+                <br>
+                <input type="radio" id="expiry72Hours" name="expiry" value="72"<?php if ($assoc['posts_expiry'] == 72) echo " checked"; ?>>
+                <label for="expiry72Hours">72 hours (3 Days)</label>
+                <br>
+                <input type="radio" id="expiry168Hours" name="expiry" value="168"<?php if ($assoc['posts_expiry'] == 168) echo " checked"; ?>>
+                <label for="expiry168Hours">168 hours (7 Days)</label>
               </div>
               <div class="col-md-6">
                 <label for="exampleConfirmPassword">Post Notes</label>
