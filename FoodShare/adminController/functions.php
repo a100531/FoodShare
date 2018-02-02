@@ -13,13 +13,23 @@
   function connect_to_db() {
 
       // $conn only exists within this function
-      $conn = mysqli_connect("localhost", "root", "", "foodshare")
+      $conn = mysqli_connect("localhost", "icafesti_fdshr", '^~Gxk.awfH1k', "icafesti_foodshare")
           or die("Unable to connect.");
 
       // this will allow us to set a variable using this function
       return $conn;
 
   }
+  //function connect_to_db() {
+
+      // $conn only exists within this function
+  //    $conn = mysqli_connect("localhost", "root", "", "foodshare")
+  //        or die("Unable to connect.");
+
+  //    // this will allow us to set a variable using this function
+  //    return $conn;
+
+  //}
   // disconnects the user from the database
   function disconnect_from_db(&$conn) {
 
