@@ -1,12 +1,15 @@
 <?php
+// this file controls all the functions involved for the application and the website backend
   session_start();
+  // encodes the images when being sent to the app
   function encode_image($image) {
     $ext = pathinfo($image, PATHINFO_EXTENSION);
     $data = file_get_contents($image);
     $base64 = 'data:image/' . $ext . ';base64,' . base64_encode($data);
 
     return $base64;
-}
+  }
+  //creates a connection to the database
   function connect_to_db() {
 
       // $conn only exists within this function
@@ -17,12 +20,14 @@
       return $conn;
 
   }
+  // disconnects the user from the database
   function disconnect_from_db(&$conn) {
 
       // closes a connection
       mysqli_close($conn);
 
   }
+  // checks if the user is logged in
   function check_login() {
 
       // 1. if the session contains no data
@@ -64,6 +69,7 @@
       return mysqli_num_rows($result) == 1;
 
   }
+  // retrieves the password from the database
   function get_password($email) {
 
         // 1. connect to the database
@@ -98,6 +104,7 @@
         }
 
     }
+  // retrieves the information of the user
   function get_user_from_email($email) {
 
         // 1. connect to the database
@@ -132,6 +139,7 @@
         }
 
     }
+  // inserts the user in the databse after the information is sanitized
   function insert_user($email, $password,$username,$phone,$location,$name,$surname) {
 
       // 1. connect to the database
@@ -177,6 +185,7 @@
       return $result;
 
   }
+  // inserts the post in the databse
   function insert_post($product,$location,$phone,$expiry) {
 
       // 1. connect to the database
@@ -222,6 +231,7 @@
       return $result;
 
   }
+  // the user is reported and the value is incremeneted everytime the button is pressed using SQL
   function report($user) {
 
       // 1. connect to the database
@@ -266,6 +276,7 @@
       return $result;
 
   }
+  // gives the user the ability to change their password used for the admin
   function update_password($email, $password) {
 
       // 1. connect to the database
@@ -311,6 +322,7 @@
       return $result;
 
   }
+  // displays all the account on the website
   function show_accounts($id = NULL){
       // connect to the database;
       $conn = connect_to_db();
@@ -335,6 +347,7 @@
       // give back the end result
       return $result;
   }
+  // displays all the posts if they are not expired
   function show_posts($id = NULL){
       // connect to the database;
       $conn = connect_to_db();
@@ -363,6 +376,7 @@
       // give back the end result
       return $result;
   }
+  // displays the posts on the application
   function show_mobPosts($id = NULL){
       // connect to the database;
       $conn = connect_to_db();
@@ -386,6 +400,7 @@
       // give back the end result
       return mysqli_fetch_all($result, MYSQLI_ASSOC);
   }
+  // checks if the post exists
   function check_post($id,$product,$location,$phone,$expiry){
 
     // connection to the database
@@ -418,6 +433,7 @@
       // check the number of rows, and return TRUE or FALSE if the result is one.
       return mysqli_num_rows($result) == 1;
     }
+  // updates the information of a post
   function edit_post($id,$product,$location,$phone,$expiry){
 
      if (check_post($id,$product,$location,$phone,$expiry)) {
@@ -457,6 +473,7 @@
 
       return $result;
     }
+  // delete the account from the database
   function delete_account($id){
 
         $conn = connect_to_db();
@@ -488,6 +505,7 @@
 
         return $result;
     }
+  // deletes the post from the databse
   function delete_post($id){
 
         $conn = connect_to_db();
@@ -519,6 +537,7 @@
 
         return $result;
     }
+  // retrieves all the accountsi n the database
   function get_accounts($id = NULL){
     // connect to the database;
     $conn = connect_to_db();
@@ -544,6 +563,7 @@
     return $result;
 
   }
+  // checks and makes sure that the account still exists
   function check_account($id,$email,$username,$phone,$location,$name,$surname){
 
     // connection to the database
@@ -579,6 +599,7 @@
       // check the number of rows, and return TRUE or FALSE if the result is one.
       return mysqli_num_rows($result) == 1;
     }
+  // enalbles the user to edit their account and also allows the admin to do so
   function edit_account($id,$email,$username,$phone,$location,$name,$surname){
 
    if (check_account($id,$email,$username,$phone,$location,$name,$surname)) {

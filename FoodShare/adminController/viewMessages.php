@@ -19,7 +19,7 @@
   // the bookmark goes to the next line.
   $email = fgets($handle);
 
-  // we need to know how long the file is - to read all of the contents
+
   // $handle will start from the second line.
   $length = filesize ($filename);
 

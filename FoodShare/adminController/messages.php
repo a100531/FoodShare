@@ -7,7 +7,7 @@
        header('Location:../index.php');
     }
     $user = $_COOKIE;
-
+    // opens the contact messages directory
     $myDirectory = opendir("contactMessages");
 
     // get each entry
@@ -57,17 +57,23 @@
               </tfoot>
               <tbody>
                 <?php
+                // using a for loop it shows all the text files contianed in the contactMessages folder
                   for($index=0; $index < $indexCount; $index++) {
                       if (substr("$dirArray[$index]", 0, 1) != "."){
                         $timestamp = intval(explode('.', $dirArray[$index])[0]);
 
                         $handle = fopen("contactMessages/".$dirArray[$index], 'r');
+                        // gets the email in the textfile without taking all the text since the it is separated by a new line
                         $email = fgets($handle);
                         fclose($handle);
                 ?>
                 <tr>
+                  <!-- each textfile was named with a timestamp this is changed in to a readable to format so it can be written beside the
+                  of the person that sent the message -->
                   <td><label><?=$email?> (<?=date('d M Y, H:i', $timestamp)?>)</label></td>
+                  <!-- gives the admin the ability to read the message-->
                   <td><a href="viewMessages.php?id=<?=$dirArray[$index]?>" class='btn btn-info'>View</a></td>
+                  <!-- gives the ability to the admin to be able to delete the single message-->
                   <td><a href="deleteMessage.php?id=<?=$dirArray[$index]?>" class='btn btn-danger'>Delete</a></td>
                 </tr>
                 <?php

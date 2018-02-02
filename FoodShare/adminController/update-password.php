@@ -1,6 +1,6 @@
 <?php
-    // if the user is logged in send m to index
-    // Check that the form was sent
+
+        // updates the password for the user
         include("functions.php");
         $user = $_COOKIE;
         // 1. retrieve the form's information

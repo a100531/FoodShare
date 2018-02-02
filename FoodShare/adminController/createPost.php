@@ -21,6 +21,7 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Create Post</div>
       <div class="card-body">
+        <!-- after filling the form the information is sent to the createPost-process-->
         <form action="createPost-process.php" enctype="multipart/form-data" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Product</label>

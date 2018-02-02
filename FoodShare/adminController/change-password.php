@@ -26,6 +26,7 @@
       <div class="text-center mt-4 mb-5">
         <h4>Reset Password?</h4>
       </div>
+      <!-- the form send the information after submitted to the php file named update-process-->
       <form action="update-password.php" method="post">
         <div class="form-group">
           <input class="form-control" id="exampleInputEmail1" type="password" name="password" aria-describedby="emailHelp" placeholder="Enter your password">

@@ -39,9 +39,11 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Register an Account</div>
       <div class="card-body">
+        <!-- retrieves the account id -->
         <form action="updateAccount.php?id=<?=$_GET['id']?>" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Username</label>
+            <!-- the values are inserted in the fields value attribute -->
             <input class="form-control" name="username" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="<?=$assoc["username"]?>">
           </div>
           <div class="form-group">

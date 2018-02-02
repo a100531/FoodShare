@@ -3,7 +3,8 @@
 
   include '../adminController/functions.php';
 
-
+  // this file handles the login for the mobile application
+  // which finally encodes the information to be use with json
   $email      = $_POST['email'];
   $password   = $_POST['password'];
 
@@ -38,7 +39,7 @@
       //die;
   }
 
-
+  // the information is encoded for json
   echo json_encode($details);
 
 ?>

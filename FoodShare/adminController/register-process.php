@@ -1,4 +1,5 @@
 <?php
+      // gives the application full permission to access this file
       header('Access-Control-Allow-Origin: *');
       include 'functions.php';
       // First, we check that the inputs are valid

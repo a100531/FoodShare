@@ -1,4 +1,4 @@
-
+<!-- this is the header for all the website pages-->
 <!DOCTYPE html>
 <html lang="en">
 

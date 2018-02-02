@@ -1,13 +1,15 @@
 <?php
+  // including all the required files to complete the page
   include("header.php");
   include("navbar.php");
   include("functions.php");
-
+  // the page checks to see if the admin is logged in
   if (!check_login()) {
        header('Location:../index.php');
     }
+    // the cookie is put in a variable
     $user = $_COOKIE;
-
+  // an array is created with the information from the database with all the accounts
   $accounts = show_accounts();
 ?>
 
@@ -26,6 +28,7 @@
           <i class="fa fa-table"></i> Data Table Example</div>
         <div class="card-body">
           <div class="table-responsive">
+            <!-- a table is set to show the accounts and their information -->
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -54,6 +57,7 @@
                 </tr>
               </tfoot>
               <tbody>
+                <!-- a while loop is set to print the whole array of users -->
                 <?php while($assoc = mysqli_fetch_assoc($accounts)):?>
                 <tr>
                   <td><?=$assoc['id']?></td>
@@ -63,9 +67,12 @@
                   <td><?=$assoc['location']?></td>
                   <td><?=$assoc['name']?></td>
                   <td><?=$assoc['surname']?></td>
+                  <!-- the edit account button is used to send information to the update account page and with the id it retrieves the information needed -->
                   <td><a href="updateAccount.php?id=<?=$assoc["id"]?>" class='btn btn-info'>Edit Account</a></td>
+                  <!-- the delete account button sends the of the related account and then the account is deleted -->
                   <td><a href="deleteAccount.php?id=<?=$assoc["id"]?>" class='btn btn-danger'>Delete Account</a></td>
                 </tr>
+                <!-- while loop ends -->
               <?php endwhile; ?>
               </tbody>
             </table>

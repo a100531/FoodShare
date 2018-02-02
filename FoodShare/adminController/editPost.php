@@ -4,17 +4,20 @@
   if (!check_login()) {
       header('Location:login.php');
   }
+  // include the edit-process to show the data that can be edited
   include("editPost-process.php");
 
 
       if (!isset ($_GET["id"])){
           header("Location:posts.php");
       }
-
+      // the post related to the id selected is shown
       $posts = show_posts($_GET['id']);
+      // the information is saved in an assoc variable
       $assoc = mysqli_fetch_assoc($posts);
+      // the file relevant to the post are retrieved
       $notes = file_get_contents("postNotes/{$_GET['id']}.txt");
-      //continue here
+      // if the variable is empty the post doesn't exist
       if ($assoc == NULL) {
           die('This post does not exist!');
       }
@@ -46,6 +49,7 @@
         <form action="editPost.php?id=<?=$_GET['id']?>" enctype="multipart/form-data" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Product</label>
+            <!-- each value is shown in their appropriate input field so if the user doesn't change anything the value it posted the same-->
             <input class="form-control" name="product" id="exampleInputEmail1" value="<?=$assoc["posts_product"]?>" type="text" aria-describedby="productHelp" placeholder="Product Category">
           </div>
           <div class="form-group">
@@ -79,6 +83,7 @@
             </div>
           </div>
           </div>
+          <!-- the id of the post is sent through the form in a hidden input-->
           <input type="hidden" name="postid" value="<?=$assoc['posts_id']?>">
           <button class="btn btn-primary" type="submit" name="button">Register</button>
         </form>

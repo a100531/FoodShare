@@ -1,4 +1,5 @@
 <?php
+      // after sanitizing the inputs from the form it sends the information and updates the account information
       $_ERRORS = array();
 
       $_FORM = array();
