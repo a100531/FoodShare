@@ -61,6 +61,9 @@
             </div>
           </div>
           </div>
+          <!--onPageInit(createPost)
+          $$('#create-user-id').val(userData['id']);-->
+          <input type="hidden" name="user-id" value="" id="create-user-id">
           <button class="btn btn-primary" type="submit" name="button">Register</button>
         </form>
       </div>

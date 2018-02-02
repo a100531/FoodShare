@@ -186,7 +186,7 @@
 
   }
   // inserts the post in the databse
-  function insert_post($product,$location,$phone,$expiry) {
+  function insert_post($product,$location,$phone,$expiry,$userId) {
 
       // 1. connect to the database
       $conn = connect_to_db();
@@ -196,6 +196,7 @@
       $location = mysqli_escape_string($conn, $location);
       $phone = mysqli_escape_string($conn, $phone);
       $expiry = mysqli_escape_string($conn, $expiry);
+      $userId = mysqli_escape_string($conn, $userId);
 
 
 
@@ -204,7 +205,7 @@
           INSERT INTO tbl_posts
               (posts_product, posts_location, posts_phone ,posts_expiry,posts_user)
           VALUES
-              ('{$product}', '{$location}', '{$phone}', '{$expiry}','darren')
+              ('{$product}', '{$location}', '{$phone}', '{$expiry}','{$userId}')
       ";
 
       // 4. ask SQL to perform the query

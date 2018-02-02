@@ -18,9 +18,10 @@
       $name = $_POST['name'];
       $surname = $_POST['surname'];
 
-      insert_user($email, $password,$username,$phone,$location,$name,$surname);
+      $id = insert_user($email, $password,$username,$phone,$location,$name,$surname);
+      $user = get_user_from_email($email);
 
-
+      echo json_encode($user);
       //header('Location:login.php');
 
  ?>

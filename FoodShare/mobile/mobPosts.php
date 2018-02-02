@@ -9,6 +9,8 @@
         $image = glob("../adminController/productImages/{$post['posts_id']}.*");
         if (count($image) >0) {
             $image = $image[0];
+        }else{
+            $image = "img/noPhoto.png";
         }
         $post['postImg'] = encode_image($image);
 
