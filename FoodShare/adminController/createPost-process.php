@@ -3,17 +3,13 @@
       include("functions.php");
       //the if statement sanitizes all the inputs from the form to make sure it doesn't have any unwanted commands in it
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        foreach ($_POST as $key => $value) {
-          $_FORM[$key] = htmlspecialchars($value);
-
-      }
       // NOTE: First, we check that the inputs are valid
       $product = $_POST['product'];
       $location = $_POST['location'];
       $phone = $_POST['phone'];
       $userId = $_POST['user-id'];
       //to create an expiry date the expiry in hours is added to the current time
-      $expiry = time() + $_POST['expiry'];
+      $expiry = time() + ($_POST['expiry'] * 60 * 60);
       $notes = $_POST['postNotes'];
       // the function insert post is called and the id is stored to be used to create the image and text file names
       $id = insert_post($product,$location,$phone,$expiry,$userId);
@@ -40,7 +36,7 @@
       fclose($myfile);
       // redirects the userto the posts page
       //header('Location:posts.php');
-      echo json_encode($id);
+      echo "1";
     }
 
  ?>

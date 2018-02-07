@@ -1,0 +1,87 @@
+//main: one-page-wonder.scss
+
+body {
+  @include body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include heading-font;
+}
+
+.btn-xl {
+  text-transform: uppercase;
+  padding: 1.5rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+
+.bg-black {
+  background-color: $black!important;
+}
+
+.rounded-pill {
+  border-radius: 5rem;
+}
+.banner{
+  width:100%;
+  z-index:-9999;
+}
+.howWork{
+  color: $green;
+  font-size: 4rem;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.question{
+  color: $green;
+}
+.howDown{
+  color: $green;
+  font-size: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.who{
+  color: $white;
+  font-size: 3rem;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+}
+.divide{
+  margin-top:3%;
+  size: 10px;
+  color: $green;
+}
+#bannerROw{
+  background-image: url("../img/banner.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-bottom: 28.22%;
+  position: relative;
+}
+.whoWeAre{
+  color: $green;
+}
+.howStep{
+  color: $green;
+  margin-top: 5%;
+}
+.howTodo{
+  width: 15em;
+  margin-left: 10%;
+}
+.contactGreen{
+  color: $green;
+}

@@ -10,26 +10,26 @@
     return $base64;
   }
   //creates a connection to the database
+  //function connect_to_db() {
+
+      // $conn only exists within this function
+  //    $conn = mysqli_connect("localhost", "icafesti_fdshr", '^~Gxk.awfH1k', "icafesti_foodshare")
+  //        or die("Unable to connect.");
+
+      // this will allow us to set a variable using this function
+  //    return $conn;
+
+  //}
   function connect_to_db() {
 
       // $conn only exists within this function
-      $conn = mysqli_connect("localhost", "icafesti_fdshr", '^~Gxk.awfH1k', "icafesti_foodshare")
+      $conn = mysqli_connect("localhost", "root", "", "foodshare")
           or die("Unable to connect.");
 
       // this will allow us to set a variable using this function
       return $conn;
 
   }
-  //function connect_to_db() {
-
-      // $conn only exists within this function
-  //    $conn = mysqli_connect("localhost", "root", "", "foodshare")
-  //        or die("Unable to connect.");
-
-  //    // this will allow us to set a variable using this function
-  //    return $conn;
-
-  //}
   // disconnects the user from the database
   function disconnect_from_db(&$conn) {
 
@@ -126,7 +126,7 @@
         // 3. define the query
         $query = "
           SELECT
-            *
+            id, email, username, phone, location, name, surname
           FROM
             tbl_accounts
           WHERE
@@ -149,6 +149,42 @@
         }
 
     }
+
+    // retrieves the information of the user
+    function get_user_from_id($id) {
+
+          // 1. connect to the database
+          $conn = connect_to_db();
+
+          // 2. protect the variables
+          $id = mysqli_escape_string($conn, $id);
+
+          // 3. define the query
+          $query = "
+            SELECT
+              id, email, username, phone, location, name, surname
+            FROM
+              tbl_accounts
+            WHERE
+              id = '{$id}'
+          ";
+
+          // 4. ask SQL to try the query
+          $result = mysqli_query($conn, $query);
+
+          // 5. disconnect from the database
+          disconnect_from_db($conn);
+
+          // 6. send back the data if there's any
+          if (mysqli_num_rows($result) != 1) {
+              // something went wrong, just send a false
+              return FALSE;
+          } else {
+              // return the first result, it's the only one
+              return mysqli_fetch_assoc($result);
+          }
+
+      }
   // inserts the user in the databse after the information is sanitized
   function insert_user($email, $password,$username,$phone,$location,$name,$surname) {
 
@@ -243,24 +279,23 @@
 
   }
   // the user is reported and the value is incremeneted everytime the button is pressed using SQL
-  function report($user) {
+  function report($post) {
 
       // 1. connect to the database
       $conn = connect_to_db();
 
       // 2. protect the variables from SQL injection
-      $user = mysqli_escape_string($conn, $user);
+      $post = mysqli_escape_string($conn, $post);
 
 
 
       // 3. define a query
       $query = "
-      UPDATE tbl_accounts
-            SET
-                reports = reports + 1
-            WHERE
-                username = '{$user}'
-
+        UPDATE tbl_accounts
+        LEFT JOIN tbl_posts
+        ON tbl_posts.posts_user = tbl_accounts.id
+        SET tbl_accounts.reports = tbl_accounts.reports + 1
+        WHERE tbl_posts.posts_id = '{$post}'
       ";
 
       // 4. ask SQL to perform the query
@@ -277,7 +312,7 @@
       } else {
 
           // if successful, we need the primary key ID
-          $result = mysqli_insert_id($conn);
+          $result = mysqli_affected_rows($conn);
       }
 
       // 6. disconnect from the database
@@ -388,9 +423,21 @@
       return $result;
   }
   // displays the posts on the application
-  function show_mobPosts($id = NULL){
+  function show_mobPosts($product = NULL, $location = NULL){
       // connect to the database;
       $conn = connect_to_db();
+
+      $query = "";
+      if ($product != NULL) {
+        $product = mysqli_escape_string($conn, $product);
+        $query = "WHERE posts_product = '{$product}'";
+      }
+
+      if ($location != NULL) {
+        $location = mysqli_escape_string($conn, $location);
+        $query .= ($query != "") ? " AND" : "WHERE";
+        $query .= " posts_location = '{$location}'";
+      }
 
       // defining a query
       // ask red as the expiry filter seems to glitch !!!!!!!!!!!!!!
@@ -398,6 +445,41 @@
       //WHERE posts_expiry > $now
       $query = "
         SELECT * FROM `tbl_posts`
+        {$query}
+      ";
+
+      //echo $query; die;
+
+      // asking SQL to perform the query
+      $result = mysqli_query($conn,$query);
+
+      //disconnect from the database
+      disconnect_from_db($conn);
+
+      // give back the end result
+      return mysqli_fetch_all($result, MYSQLI_ASSOC);
+  }
+  function show_mobMyPosts($id = NULL){
+      // connect to the database;
+      $conn = connect_to_db();
+
+      $id = mysqli_escape_string($conn, $id);
+      $now = time();
+
+      // defining a query
+      // ask red as the expiry filter seems to glitch !!!!!!!!!!!!!!
+      //$now = time();
+      //WHERE posts_expiry > $now
+      //posts will show only when
+      $query = "
+        SELECT
+          *
+        FROM
+          tbl_posts
+        WHERE
+          posts_user = '{$id}'
+        AND
+          posts_expiry > {$now}
       ";
 
       //echo $query; die;
@@ -445,7 +527,7 @@
       return mysqli_num_rows($result) == 1;
     }
   // updates the information of a post
-  function edit_post($id,$product,$location,$phone,$expiry){
+  function edit_post($id,$product){
 
      if (check_post($id,$product,$location,$phone,$expiry)) {
          return TRUE;
@@ -457,9 +539,6 @@
 
         $id = mysqli_escape_string($conn,$id);
         $product = mysqli_escape_string($conn,$product);
-        $location = mysqli_escape_string($conn,$location);
-        $phone = mysqli_escape_string($conn,$phone);
-        $expiry = mysqli_escape_string($conn,$expiry);
 
     $query ="
     UPDATE tbl_posts
@@ -632,6 +711,40 @@
           SET
               email = '{$email}',
               username = '{$username}',
+              phone = '{$phone}',
+              location = '{$location}',
+              name = '{$name}',
+              surname = '{$surname}'
+          WHERE
+              id = '{$id}'
+          ";
+      $result  = mysqli_query($conn,$query);
+      if (mysqli_affected_rows($conn) !=1){
+          //.combines two strings
+          echo "the query is not successful:";
+          echo mysqli_error($conn);
+      }else{
+          //this will change $result to TRUE
+          $result = TRUE;
+      }
+      disconnect_from_db($conn);
+
+      return $result;
+    }
+  function edit_MobAccount($id,$phone,$location,$name,$surname){
+
+  // connection to the database
+    $conn = connect_to_db();
+
+    $id = mysqli_escape_string($conn,$id);
+    $phone = mysqli_escape_string($conn,$phone);
+    $location = mysqli_escape_string($conn,$location);
+    $name = mysqli_escape_string($conn,$name);
+    $surname = mysqli_escape_string($conn,$surname);
+
+    $query ="
+    UPDATE tbl_accounts
+          SET
               phone = '{$phone}',
               location = '{$location}',
               name = '{$name}',

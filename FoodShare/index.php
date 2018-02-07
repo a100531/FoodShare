@@ -105,18 +105,15 @@
           <div class="row align-items-center">
             <div class="col-lg-4">
               <img class="howTodo" src="img/food_basket.png" alt="">
-              <p class="howStep">By rescuing an apple or a sack of potatoes or just can of beans,
-                you will reduce the food waste and help to build the sustainable future!</p>
+              <p class="howStep">Going out of town or bought too much? Collect all your extra FOOD!! </p>
             </div>
             <div class="col-lg-4">
               <img class="howTodo" src="img/phone.png" alt="">
-              <p class="howStep">By rescuing an apple or a sack of potatoes or just can of beans,
-                you will reduce the food waste and help to build the sustainable future!</p>
+              <p class="howStep">Use the FoodShare App to list your products and get ready to SHARE!!</p>
             </div>
             <div class="col-lg-4">
               <img class="howTodo" src="img/car.png" alt="">
-              <p class="howStep">By rescuing an apple or a sack of potatoes or just can of beans,
-                you will reduce the food waste and help to build the sustainable future!</p>
+              <p class="howStep">Wait for your food to be picked up and reduce WASTE!!.</p>
             </div>
           </div>
         </div>
