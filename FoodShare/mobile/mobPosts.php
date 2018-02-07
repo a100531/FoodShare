@@ -16,7 +16,8 @@
         }else{
             $image = "mobile/img/noPhoto.png";
         }
-        $post['postImg'] = "http://foodshare.dev/{$image}";
+        //$post['postImg'] = "http://foodshare.dev/{$image}";
+        $post['postImg'] = "http://foodshare.icafestival.com/{$image}";
 
     }
     // a for loop is used to retrieve and print each text file related to the post

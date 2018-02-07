@@ -36,8 +36,7 @@
                   <th>Expiry</th>
                   <th>Image</th>
                   <th>Notes</th>
-                  <th>Actions</th>
-                  <th>Actions</th>
+
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -51,8 +50,7 @@
                   <th>Expiry</th>
                   <th>Image</th>
                   <th>Notes</th>
-                  <th>Actions</th>
-                  <th>Actions</th>
+
                   <th>Actions</th>
                 </tr>
               </tfoot>
@@ -79,10 +77,6 @@
                   <td><img width="80%" src="<?=$images?>"></td>
                   <td><p width="50%"><?=$text?></p></td>
                   <!-- allows the user to report the post and increase the the amount of reports the user that created the post has -->
-                  <td><a href="report.php?user=<?=$assoc['posts_user']?>" class='btn btn-danger'>Report</a></td>
-                  <!-- allows the user to edit their post -->
-                  <td><a href="editPost.php?id=<?=$assoc['posts_id']?>" class='btn btn-info'>Edit</a></td>
-                  <!-- allows the user or the admin to delete the post -->
                   <td><a href="deletePost.php?id=<?=$assoc['posts_id']?>" class='btn btn-danger'>Delete Post</a></td>
                 </tr>
               <?php endwhile; ?>
