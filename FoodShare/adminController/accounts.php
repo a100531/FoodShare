@@ -39,6 +39,7 @@
                   <th>Location</th>
                   <th>Name</th>
                   <th>Surname</th>
+                  <th>Reports</th>
                   <th>Action</th>
                   <th>Action</th>
                 </tr>
@@ -52,6 +53,7 @@
                   <th>Location</th>
                   <th>Name</th>
                   <th>Surname</th>
+                  <th>Reports</th>
                   <th>Action</th>
                   <th>Action</th>
                 </tr>
@@ -67,6 +69,7 @@
                   <td><?=$assoc['location']?></td>
                   <td><?=$assoc['name']?></td>
                   <td><?=$assoc['surname']?></td>
+                  <td><?=$assoc['reports']?></td>
                   <!-- the edit account button is used to send information to the update account page and with the id it retrieves the information needed -->
                   <td><a href="updateAccount.php?id=<?=$assoc["id"]?>" class='btn btn-info'>Edit Account</a></td>
                   <!-- the delete account button sends the of the related account and then the account is deleted -->
